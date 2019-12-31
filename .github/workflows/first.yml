@@ -28,6 +28,9 @@ jobs:
 
     - name: Test
       run: |
-        ./Hello
+        echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
+        echo HOME $HOME
+        echo GITHUB_REPOSITORY $GITHUB_REPOSITORY
+        build_static/Hello
         echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
 
