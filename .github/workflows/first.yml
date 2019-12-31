@@ -18,13 +18,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-#      with:
-#        fetch-depth: 1
-
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: Build static test
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        set -e
+        mkdir build_static
+        cd build_static
+        cmake ..
+        make
+
+    - name: Test
+      run: |
+        ./Hello
+        echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
 
