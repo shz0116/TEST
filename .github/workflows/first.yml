@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest] ## [windows-latest, macos-latest] 
+        os: [windows-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -26,6 +26,7 @@ jobs:
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: Build static test
+      shell: bash
       run: |
         set -e
         mkdir build_static
