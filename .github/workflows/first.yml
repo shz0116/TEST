@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [windows-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
+        os: [ubuntu-latest, macos-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -26,6 +26,7 @@ jobs:
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: Build static test
+      if: runner.os == 'Linux'
       shell: bash
       run: |
         set -e
@@ -33,8 +34,10 @@ jobs:
         cd build_static
         cmake ..
         make
+        echo "THIS IS ON LINUX"
 
     - name: Test
+      if: contains(runner.os,'Linux')
       run: |
         echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
         echo HOME $HOME
@@ -49,4 +52,5 @@ jobs:
         echo "--------"
         build_static/Hello
         echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
+        echo "LINUX AGAIN"
 
