@@ -26,10 +26,11 @@ jobs:
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: Build static test
-      if: runner.os == 'Linux'
+##      if: runner.os == 'Linux'
       shell: bash
       run: |
         set -e
+        c++ --version               
         mkdir build_static
         cd build_static
         cmake ..
@@ -37,7 +38,7 @@ jobs:
         echo "THIS IS ON LINUX"
 
     - name: Test
-      if: contains(runner.os,'Linux')
+##      if: contains(runner.os,'Linux')
       run: |
         echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
         echo HOME $HOME
