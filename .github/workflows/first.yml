@@ -26,7 +26,7 @@ jobs:
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: Build static test
-##      if: runner.os == 'Linux'
+      if: runner.os == 'linux' || runner.os == 'macos'
       shell: bash
       run: |
         set -e
@@ -35,7 +35,25 @@ jobs:
         cd build_static
         cmake ..
         make
-        echo "THIS IS ON LINUX" runner.os
+        echo "THIS IS ON LINUX" ${runner.os}
+
+    - name: Build static test on windows
+      if: runner.os == 'windows'
+      shell: bash
+      run: |
+        set -e
+        echo "====On windows"
+        echo "====c++"
+        c++ --version               
+        echo "====cl.exe"
+        cl.exe --version
+        echo "====Creating dir "
+        mkdir build_static
+        cd build_static
+        echo "====cmake"
+        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+        ninja -k 0 all
+        echo "THIS IS ON LINUX" ${runner.os}
 
     - name: Test
 ##      if: contains(runner.os,'Linux')
