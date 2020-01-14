@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [ubuntu-latest, macos-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
+        os: [windows-latest, ubuntu-latest, macos-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
         cd build_static
         cmake ..
         make
-        echo "THIS IS ON LINUX"
+        echo "THIS IS ON LINUX" runner.os
 
     - name: Test
 ##      if: contains(runner.os,'Linux')
@@ -53,5 +53,5 @@ jobs:
         echo "--------"
         build_static/Hello
         echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
-        echo "LINUX AGAIN"
+        echo "LINUX AGAIN" {{ runner.os }}
 
