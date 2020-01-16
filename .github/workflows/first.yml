@@ -50,9 +50,17 @@ jobs:
         echo "====current dir"
         set mydir=%CD%
         echo %mydir%
-        echo "=====find file"
+        echo "=====find file on c"
         chdir c:\
+        set mydir=%CD%
+        echo %mydir%
         dir vcvarsall.bat /s
+        echo "=====find file on d"
+        chdir d:\ 
+        set mydir=%CD%
+        echo %mydir%
+        dir vcvarsall.bat /s
+
 #        echo "====Creating dir "
 #        mkdir build_static
 #        cd build_static
