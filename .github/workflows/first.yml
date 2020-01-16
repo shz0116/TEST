@@ -41,7 +41,7 @@ jobs:
 
     - name: Build static test on windows
       if: runner.os == 'windows'
-      shell: cmd
+#      shell: cmd
       run: |
         set -e
         echo "====On windows"
