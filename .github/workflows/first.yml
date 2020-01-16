@@ -49,7 +49,7 @@ jobs:
         c++ --version               
         echo "====current dir"
         set mydir=%CD%
-        echo %mydir"
+        echo %mydir%
         echo "=====find file"
         chdir c:\
         dir vcvarsall.bat /s
