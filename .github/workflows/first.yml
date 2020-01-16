@@ -50,6 +50,9 @@ jobs:
         echo "====Creating dir "
         mkdir build_static
         cd build_static
+        echo "install ninja"
+        pip install ninja
+        which ninja
         echo "====cmake"
         cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
         ninja -k 0 all
