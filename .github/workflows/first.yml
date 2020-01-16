@@ -45,6 +45,7 @@ jobs:
       run: |
         set -e
         echo "====On windows"
+        echo %PATH%
         echo "====c++"
         c++ --version               
         echo "====current dir"
