@@ -61,11 +61,9 @@ jobs:
         echo "====install ninja"
         pip install ninja
         which ninja
-#        echo "====vcvarsall.bat"
-#        find . -name "vcvarsall.bat"
-#        echo "====cmake"
-#        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-#        ninja -k 0 all
+        echo "====cmake"
+        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+        ninja -k 0 all
 #        echo "THIS IS ON LINUX" ${runner.os}
 
     - name: Test
