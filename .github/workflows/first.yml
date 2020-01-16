@@ -48,6 +48,8 @@ jobs:
         echo %PATH%
         dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC"
         dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
+        echo "====call vcvarsall.bat"
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
         echo "====c++"
         c++ --version               
         echo "====current dir"
