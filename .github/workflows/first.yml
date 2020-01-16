@@ -46,8 +46,7 @@ jobs:
         set -e
         echo "====On windows"
         echo %PATH%
-        dir c:\
-        dir "c:\Program Files (x86)"
+        dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
         echo "====c++"
         c++ --version               
         echo "====current dir"
