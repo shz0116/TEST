@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
+        os: [windows-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -41,24 +41,30 @@ jobs:
 
     - name: Build static test on windows
       if: runner.os == 'windows'
-      shell: bash
+      shell: cmd
       run: |
         set -e
         echo "====On windows"
         echo "====c++"
         c++ --version               
-        echo "====Creating dir "
-        mkdir build_static
-        cd build_static
-        echo "====install ninja"
-        pip install ninja
-        which ninja
-        echo "====vcvarsall.bat"
-        find . -name "vcvarsall.bat"
-        echo "====cmake"
-        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-        ninja -k 0 all
-        echo "THIS IS ON LINUX" ${runner.os}
+        echo "====current dir"
+        set mydir=%CD%
+        echo %mydir"
+        echo "=====find file"
+        chdir c:\
+        dir vcvarsall.bat /s
+#        echo "====Creating dir "
+#        mkdir build_static
+#        cd build_static
+#        echo "====install ninja"
+#        pip install ninja
+#        which ninja
+#        echo "====vcvarsall.bat"
+#        find . -name "vcvarsall.bat"
+#        echo "====cmake"
+#        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+#        ninja -k 0 all
+#        echo "THIS IS ON LINUX" ${runner.os}
 
     - name: Test
 ##      if: contains(runner.os,'Linux')
