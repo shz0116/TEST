@@ -46,6 +46,8 @@ jobs:
         set -e
         echo "====On windows"
         echo %PATH%
+        dir c:\
+        dir "c:\Program Files (x86)"
         echo "====c++"
         c++ --version               
         echo "====current dir"
@@ -53,8 +55,8 @@ jobs:
         echo %mydir%
         echo "=====find file on c"
         chdir c:\
-        set mydir=%CD%
-        echo %mydir%
+        set myd=%CD%
+        echo %myd%
         dir vcvarsall.bat /s
         echo "=====find file on d"
         chdir d:\ 
