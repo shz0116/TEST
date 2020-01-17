@@ -110,8 +110,9 @@ jobs:
         pip install ninja
         which ninja
         echo "====cmake"
-#        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-#        ninja all
+##        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+##        ninja all
+##
         cmake -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
         make
         echo "THIS IS ON %RUNOS% "
