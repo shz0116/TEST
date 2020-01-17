@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [ubuntu-latest, windows-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
+        os: [ubuntu-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -55,36 +55,6 @@ jobs:
         make
         echo "THIS IS ON : " $RUNOS
 
-    - name: Build static test on windows
-      if: runner.os == 'windows'
-      env:
-        RUNOS: ${{ runner.os }}
-      shell: cmd
-      run: |
-        set -e
-        echo "====On windows"
-        echo %PATH%
-        dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC"
-        dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
-        echo "====call vcvarsall.bat"
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        echo "====c++"
-        c++ --version               
-        echo "====current dir"
-        set mydir=%CD%
-        echo %mydir%
-        echo "====Creating dir "
-        mkdir build_static
-        cd build_static
-        echo "====install ninja"
-        pip install ninja
-        which ninja
-        echo "====cmake"
-        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-        ninja all
-        echo "THIS IS ON WINDOWS " $RUNOS  
-        echo "THIS IS ON WINDOWS " %RUNOS%
-
     - name: Test
 ##      if: contains(runner.os,'Linux')
       run: |
@@ -102,4 +72,45 @@ jobs:
         build_static/Hello
         echo GITHUB_WORKFLOW is $GITHUB_WORKFLOW
         echo "LINUX AGAIN" {{ runner.os }}
+
+  build2:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout submodules
+      shell: bash
+      run: |
+        auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+        git submodule sync --recursive
+        git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+
+    - name: Build static test 
+      env:
+        RUNOS: ${{ runner.os }}
+      shell: cmd
+      run: |
+        set -e
+        echo "====On windows"
+        echo %PATH%
+        dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC"
+        dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
+        echo "====call vcvarsall.bat"
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+        echo "====c++"
+        c++ --version
+        echo "====current dir"
+        set mydir=%CD%
+        echo %mydir%
+        echo "====Creating dir "
+        mkdir build_static
+        cd build_static
+        echo "====install ninja"
+        pip install ninja
+        which ninja
+        echo "====cmake"
+        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+        ninja all
+        echo "THIS IS ON %RUNOS% "
 
