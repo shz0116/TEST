@@ -54,6 +54,8 @@ jobs:
 
     - name: Build static test on windows
       if: runner.os == 'windows'
+      env:
+        RUNOS: ${{ runner.os }}
       shell: cmd
       run: |
         set -e
@@ -76,8 +78,9 @@ jobs:
         which ninja
         echo "====cmake"
         cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-        ninja -k 0 all
-#        echo "THIS IS ON LINUX" ${runner.os}
+        ninja all
+        echo "THIS IS ON WINDOWS " $RUNOS  
+        echo "THIS IS ON WINDOWS " %RUNOS%
 
     - name: Test
 ##      if: contains(runner.os,'Linux')
