@@ -26,7 +26,6 @@ jobs:
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: Get env vars on Linux or Macos
-      env:
       run: |
         echo GITHUB_WORKFLOW   = ${env::GITHUB_WORKFLOW}
         echo GITHUB_WORKFLOW   = ${env:GITHUB_WORKFLOW}
