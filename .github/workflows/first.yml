@@ -27,7 +27,7 @@ jobs:
 
     - name: Get env vars on Linux or Macos
       env:
-        workflow: {{ $GITHUB_WORKFLOW }}
+        workflow: {{ GITHUB_WORKFLOW }}
       run: |
         echo GITHUB_WORKFLOW   = ${env::GITHUB_WORKFLOW}
         echo GITHUB_WORKFLOW   = ${env:GITHUB_WORKFLOW}
