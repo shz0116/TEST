@@ -110,10 +110,13 @@ jobs:
         pip install ninja
         which ninja
         echo "====cmake"
-##        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-##        ninja all
-##
-        cmake -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
-        make
+        cmake -G Ninja -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+        ninja all
         echo "THIS IS ON %RUNOS% "
+        echo "PATH= "
+        echo %PATH%
+        echo "========="
+        set PATH=%PATH%;%cd%\asmjit
+        echo %PATH%
+
 
