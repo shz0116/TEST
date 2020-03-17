@@ -57,6 +57,7 @@ jobs:
         echo "THIS IS ON : " $RUNOS
         lscpu
     - name: Get SDE
+      run: |
         which wget
         which git
         git clone https://github.com/marehr/intel-sde-downloader.git
