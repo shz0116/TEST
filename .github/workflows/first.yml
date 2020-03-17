@@ -61,9 +61,11 @@ jobs:
         which wget
         which git
         git clone https://github.com/marehr/intel-sde-downloader.git
-        cd intel-sde-downloader
         ls
-
+        pip install -r intel-sde-downloader/requirements.txt
+        python intel-sde-downloader/intel-sde-downloader.py sde-external-8.35.0-2019-03-11-lin.tar.bz2
+        ls
+        echo "SHOULD HAVE SDE"
     - name: Test
 ##      if: contains(runner.os,'Linux')
       run: |
