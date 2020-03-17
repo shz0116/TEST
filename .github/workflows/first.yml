@@ -78,7 +78,6 @@ jobs:
         for file in sde-external-8.35.0-2019-03-11-lin/*
         do 
           echo "SDE : $file"
-#          sde-external-8.35.0-2019-03-11-lin/sde64 -- $file
         done
 
     - name: Test
