@@ -75,9 +75,10 @@ jobs:
         echo "SHOULD HAVE SDE"
         which ctest
 
-        for file in sde-external-8.35.0-2019-03-11-lin/*
+        for n in 1 2 3 4
         do 
-          echo "SDE : $file"
+          sde-external-8.35.0-2019-03-11-lin/sde64 -- build_static/Hello
+          echo "SDE : $n"
         done
 
     - name: Test
