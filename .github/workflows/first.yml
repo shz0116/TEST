@@ -56,7 +56,6 @@ jobs:
         make
         echo "THIS IS ON : " $RUNOS
         lscpu
-        cat /proc/cpuinfo
 
     - name: Get SDE
       run: |
