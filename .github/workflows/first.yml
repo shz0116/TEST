@@ -54,7 +54,6 @@ jobs:
         cmake ..
         make
         echo "THIS IS ON : " $RUNOS
-        lscpu
 
     - name: Get SDE
       run: |
