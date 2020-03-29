@@ -78,7 +78,7 @@ jobs:
         for n in 1 2 3 4
         do 
           timeout -k 20 10s sde-external-8.50.0-2020-03-26-lin/sde64 -- build_static/Hello
-          if [$? -eq 124] || [$? -eq 137]
+          if [[$? -eq 124]] || [[$? -eq 137]]
           then
              echo "SDE Killed: $n  $?"
           else
@@ -87,7 +87,7 @@ jobs:
         done
 
         timeout -k 20 10s sleep 30
-        if [$? -eq 124] || [$? -eq 137]
+        if [[$? -eq 124]] || [[$? -eq 137]]
         then
            echo "SDE Killed in sleep: $n  $?"
         else
