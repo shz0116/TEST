@@ -84,6 +84,14 @@ jobs:
           fi
         done
 
+        timeout -k 20 10s sleep 30
+        if [$? == 124] || [$? == 137]
+        then
+           echo "SDE Killed in sleep: $n  $?"
+        else
+           echo "SDE sleep: $n $?"
+        fi  
+
     - name: Test
 ##      if: contains(runner.os,'Linux')
       run: |
