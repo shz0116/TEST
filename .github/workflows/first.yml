@@ -63,19 +63,19 @@ jobs:
         git clone https://github.com/marehr/intel-sde-downloader.git
         ls
         pip install -r intel-sde-downloader/requirements.txt
-        python intel-sde-downloader/intel-sde-downloader.py sde-external-8.49.0-2020-03-17-lin.tar.bz2
+        python intel-sde-downloader/intel-sde-downloader.py sde-external-8.50.0-2020-03-26-lin.tar.bz2
         ls
-        tar -xvf sde-external-8.49.0-2020-03-17-lin.tar.bz2
+        tar -xvf sde-external-8.50.0-2020-03-26-lin.tar.bz2
         echo "==========files==========="
-        ls sde-external-8.49.0-2020-03-17-lin
+        ls sde-external-8.50.0-2020-03-26-lin
         echo "==========hello==========="
-        sde-external-8.49.0-2020-03-17-lin/sde64 -- build_static/Hello
+        sde-external-8.50.0-2020-03-26-lin/sde64 -- build_static/Hello
         echo "SHOULD HAVE SDE"
         which ctest
 
         for n in 1 2 3 4
         do 
-          timeout -k 20 10s sde-external-8.49.0-2020-03-17-lin/sde64 -- build_static/Hello
+          timeout -k 20 10s sde-external-8.50.0-2020-03-26-lin/sde64 -- build_static/Hello
           if [$? == 124] || [$? == 137]
           then
              echo "SDE Killed: $n  $?"
