@@ -57,7 +57,9 @@ jobs:
         echo "THIS IS ON : " $RUNOS
 
     - name: Get SDE
+      shell: bash
       run: |
+        set +e
         which wget
         which git
         git clone https://github.com/marehr/intel-sde-downloader.git
