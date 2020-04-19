@@ -26,6 +26,8 @@ jobs:
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: Get env vars on Linux or Macos
+      with:
+        mysecret: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
       run: |
         echo GITHUB_WORKFLOW   = ${env::GITHUB_WORKFLOW}
         echo GITHUB_WORKFLOW   = ${env:GITHUB_WORKFLOW}
@@ -41,6 +43,8 @@ jobs:
         echo GITHUB_SHA        = $GITHUB_SHA
         echo GITHUB_REF        = $GITHUB_REF
         cat /proc/meminfo
+        echo "SHOW Secret:"
+        echo "$mysecret"
 
     - name: Build static test
       env:
