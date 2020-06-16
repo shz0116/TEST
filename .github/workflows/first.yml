@@ -98,6 +98,9 @@ jobs:
            echo "SDE sleep: $n $?"
         fi  
 
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v2
+
     - name: Test
 ##      if: contains(runner.os,'Linux')
       run: |
