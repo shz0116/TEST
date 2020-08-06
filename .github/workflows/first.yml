@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [ubuntu-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
+        os: [windows-latest] ## [ubuntu-latest, windows-latest, macos-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +23,10 @@ jobs:
         auth_header="$(git config --local --get http.https://github.com/.extraheader)"
         git submodule sync --recursive
         git  -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+
+    - name: get cpu info
+      run: |
+         wmic cpu list full
 
     - name: Get env vars on Linux or Macos
       env:
