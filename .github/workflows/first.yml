@@ -30,7 +30,7 @@ jobs:
          python --version
          echo %cd%
          echo %cd%\Coreinfo.zip
-         python -c "import urllib.request; urllib.request.urlretrieve(https://download.sysinternals.com/files/Coreinfo.zip, %cd%\Coreinfo.zip)"
+         python -c "import urllib.request; urllib.request.urlretrieve(https://download.sysinternals.com/files/Coreinfo.zip, %cd%\Coreinfo.zip);"
          dir
          unzip Coreinfo.zip
          .\Coreinfo64.exe
