@@ -33,7 +33,7 @@ jobs:
          python -c "import urllib.request; urllib.request.urlretrieve('https://download.sysinternals.com/files/Coreinfo.zip', 'Coreinfo.zip');"
          dir
          unzip Coreinfo.zip
-         .\Coreinfo64.exe
+         .\Coreinfo64.exe /y
          wmic cpu list full
 
     - name: Get env vars on Linux or Macos
