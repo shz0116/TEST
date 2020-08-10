@@ -26,6 +26,7 @@ jobs:
 
     - name: get cpu info
       run: |
+         python --version
          wmic cpu list full
 
     - name: Get env vars on Linux or Macos
