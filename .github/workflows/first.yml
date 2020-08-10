@@ -27,6 +27,11 @@ jobs:
     - name: get cpu info
       run: |
          python --version
+         https://download.sysinternals.com/files/Coreinfo.zip
+         python -c "import urllib; urllib.urlretrieve ('https://download.sysinternals.com/files/Coreinfo.zip')"
+         dir
+         unzip Coreinfo.zip
+         .\Coreinfo64.exe
          wmic cpu list full
 
     - name: Get env vars on Linux or Macos
