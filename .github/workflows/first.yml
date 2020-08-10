@@ -27,7 +27,6 @@ jobs:
     - name: get cpu info
       run: |
          python --version
-         https://download.sysinternals.com/files/Coreinfo.zip
          python -c "import urllib.request; urllib.request.urlretrieve('https://download.sysinternals.com/files/Coreinfo.zip', '%cd%\Coreinfo.zip')"
          dir
          unzip Coreinfo.zip
