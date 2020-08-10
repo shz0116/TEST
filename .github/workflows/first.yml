@@ -25,6 +25,7 @@ jobs:
         git  -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
     - name: get cpu info
+      shell: cmd
       run: |
          python --version
          echo %cd%
