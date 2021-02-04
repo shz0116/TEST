@@ -72,44 +72,6 @@ jobs:
         make
         echo "THIS IS ON : " $RUNOS
 
-    - name: Get SDE
-      shell: bash
-      run: |
-        set +e
-        which wget
-        which git
-        git clone https://github.com/marehr/intel-sde-downloader.git
-        ls
-        pip install -r intel-sde-downloader/requirements.txt
-        python intel-sde-downloader/intel-sde-downloader.py sde-external-8.50.0-2020-03-26-lin.tar.bz2
-        ls
-        tar -xf sde-external-8.50.0-2020-03-26-lin.tar.bz2
-        echo "==========files==========="
-        ls sde-external-8.50.0-2020-03-26-lin
-        echo "==========hello==========="
-        sde-external-8.50.0-2020-03-26-lin/sde64 -- build_static/Hello
-        echo "SHOULD HAVE SDE"
-        which ctest
-
-        for n in 1 2 3 4
-        do 
-          timeout -k 20 10s sde-external-8.50.0-2020-03-26-lin/sde64 -- build_static/Hello
-          if [[ $? -eq 124 ]] || [[ $? -eq 137 ]]
-          then
-             echo "SDE Killed: $n  $?"
-          else
-             echo "SDE : $n $?"
-          fi
-        done
-
-        timeout -k 20 10s sleep 30
-        if [[ $? -eq 124 ]] || [[ $? -eq 137 ]]
-        then
-           echo "SDE Killed in sleep: $n  $?"
-        else
-           echo "SDE sleep: $n $?"
-        fi  
-
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v2
 
